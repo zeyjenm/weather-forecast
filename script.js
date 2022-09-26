@@ -3,7 +3,7 @@
 function getWeatherData (city) {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + ',au&APPID=977c03827acf14dc26fe2e44aa4551df', {mode: 'cors',})
     .then(function(weatherData) {
-        console.log(weatherData.json());
+        return weatherData.json();
     })
     .then(function(weatherData) {   // convert to celsius
         let currentTemp = Math.floor(weatherData.main.temp - 273.15); 
@@ -21,13 +21,21 @@ function getWeatherData (city) {
             description,
             windDirection,
             windSpeed
-        })
+        });
     });
 }
 
-getWeatherData('Melbourne');
 
-function get () {
 
+// Event listener for user location input
+
+function getUserLocation() {
+    const userLocation = document.querySelector('#city');
+    const searchButton = document.querySelector('button');
+    searchButton.addEventListener('click', () => {
+        let userInput = userLocation.value;
+        getWeatherData(userInput);
+    })
 }
 
+getUserLocation();
