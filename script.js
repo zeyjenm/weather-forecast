@@ -1,3 +1,12 @@
+// Output references
+const currentTempOutput = document.querySelector('#current-temp');
+const minTempOutput = document.querySelector('#min-temp');
+const maxTempOutput = document.querySelector('#max-temp');
+const weatherStatusOutput = document.querySelector('#status');
+const weatherDescriptionOutput = document.querySelector('#description');
+const windSpeedOutput = document.querySelector('#wind-speed');
+const windDirectionOutput = document.querySelector('#wind-direction');
+
 // get weather data of location
 
 function getWeatherData (city) {
@@ -13,18 +22,15 @@ function getWeatherData (city) {
         let description = weatherData.weather[0].description;
         let windDirection = weatherData.wind.deg;
         let windSpeed = weatherData.wind.speed;
-        console.log({
-            currentTemp,
-            minTemp,
-            maxTemp,
-            status,
-            description,
-            windDirection,
-            windSpeed
-        });
+        currentTempOutput.textContent += currentTemp;
+        minTempOutput.textContent += minTemp;
+        maxTempOutput.textContent += maxTemp;
+        weatherStatusOutput.textContent += status;
+      //  weatherDescriptionOutput.textContent += description;
+        windSpeedOutput.textContent += windSpeed + ' knots';
+        windDirectionOutput.textContent += windDirection + ' deg';
     });
 }
-
 
 
 // Event listener for user location input
@@ -35,7 +41,9 @@ function getUserLocation() {
     searchButton.addEventListener('click', () => {
         let userInput = userLocation.value;
         getWeatherData(userInput);
+        //displayWeather(weatherData);
     })
 }
 
 getUserLocation();
+
