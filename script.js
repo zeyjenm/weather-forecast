@@ -22,12 +22,12 @@ function getWeatherData (city) {
         let status = weatherData.weather[0].main;
         let windDirection = weatherData.wind.deg;
         let windSpeed = weatherData.wind.speed;
-        currentTempOutput.textContent += currentTemp;
-        minTempOutput.textContent += minTemp;
-        maxTempOutput.textContent += maxTemp;
-        weatherStatusOutput.textContent += status;
-        windSpeedOutput.textContent += windSpeed + ' knots';
-        windDirectionOutput.textContent += windDirection + ' deg';
+        currentTempOutput.textContent += 'Current temperature: ' + currentTemp;
+        minTempOutput.textContent += 'Low: ' + minTemp;
+        maxTempOutput.textContent += 'High: ' + maxTemp;
+        weatherStatusOutput.textContent += 'Current weather: ' + status;
+        windSpeedOutput.textContent += 'Wind speed: ' + windSpeed + ' knots';
+        windDirectionOutput.textContent += 'Wind direction: ' + windDirection + ' deg';
         return {
             currentTemp,
             minTemp,
@@ -52,6 +52,13 @@ function getUserLocation () {
     const userLocation = document.querySelector('#city');
     const searchButton = document.querySelector('button');
     searchButton.addEventListener('click', () => {
+        //clear previous search
+        currentTempOutput.textContent = '';
+        minTempOutput.textContent = '';
+        maxTempOutput.textContent = '';
+        weatherStatusOutput.textContent = '';
+        windSpeedOutput.textContent = '';
+        windDirectionOutput.textContent = '';
         let userInput = userLocation.value;
         getWeatherData(userInput);
 });
@@ -69,5 +76,4 @@ function setBackgroundImage (status) {
     else if (status == 'Clear') {
         backgroundImage.style.backgroundImage = 'url("background_images/clear.jpg")';
     }
-
 }
