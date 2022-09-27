@@ -6,6 +6,8 @@ const weatherStatusOutput = document.querySelector('#status');
 const windSpeedOutput = document.querySelector('#wind-speed');
 const windDirectionOutput = document.querySelector('#wind-direction');
 
+const backgroundImage = document.querySelector('body');
+
 // get weather data of location
 
 function getWeatherData (city) {
@@ -26,24 +28,46 @@ function getWeatherData (city) {
         weatherStatusOutput.textContent += status;
         windSpeedOutput.textContent += windSpeed + ' knots';
         windDirectionOutput.textContent += windDirection + ' deg';
+        return {
+            currentTemp,
+            minTemp,
+            maxTemp,
+            status,
+            windDirection,
+            windSpeed
+        }
+    })
+    
+    .then(function(weatherData) {
+        console.log(weatherData.status);
+        setBackgroundImage(weatherData.status);
     });
-    return {
-        currentTemp,
-    }
+    
 }
 
 
 // Event listener for user location input
 
-function getUserLocation() {
+function getUserLocation () {
     const userLocation = document.querySelector('#city');
     const searchButton = document.querySelector('button');
     searchButton.addEventListener('click', () => {
         let userInput = userLocation.value;
         getWeatherData(userInput);
-        //displayWeather(weatherData);
-    })
+});
 }
 
 getUserLocation();
 
+function setBackgroundImage (status) {
+    if (status == 'Clouds') {
+        backgroundImage.style.backgroundImage = 'url("background_images/clouds.jpg")';
+    }
+    else if (status == 'Rain') {
+        backgroundImage.style.backgroundImage = 'url("background_images/rain.jpg")';
+    }
+    else if (status == 'Clear') {
+        backgroundImage.style.backgroundImage = 'url("background_images/clear.jpg")';
+    }
+
+}
