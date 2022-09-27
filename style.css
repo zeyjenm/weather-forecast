@@ -2,10 +2,13 @@ body {
     display: flex;
     flex-direction: column;
     background-position: 0.5vw;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: rgb(189, 221, 221);
 }
 
 h1, h2, form {
     text-align: center;
+    padding: 4px;
 }
 
 .weather {
@@ -14,7 +17,8 @@ h1, h2, form {
     grid-template-rows: repeat(3, 1fr);
     max-width: 60vw;
     margin: 20px;
-    font-size: 20px;
+    font-size: 24px;
+    padding: 4px;
 }
 
 #current-temp {
@@ -45,3 +49,14 @@ h1, h2, form {
     font-weight: 600;
 }
 
+form {
+    font-size: 20px;
+}
+
+input {
+    font-size: 16px;
+}
+
+button {
+    font-size: 16px;
+}
